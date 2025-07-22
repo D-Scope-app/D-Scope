@@ -882,15 +882,20 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
     </script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-      emailjs.init("QiixOfV3CNe8V0Vog"); // 
+      // 
+      (function() {
+        emailjs.init("QiixOfV3CNe8V0Vog"); // 
+      })();
     
       function sendEmail(e) {
         e.preventDefault();
     
-        emailjs.sendForm('service_4zih0kv', 'template_bruqi7a', '#contact-form')
+        const form = document.getElementById('contact-form');
+    
+        emailjs.sendForm('service_vjvrr7b', 'template_bruqi7a', form)
           .then(function () {
             alert('Message sent successfully!');
-            document.getElementById('contact-form').reset();
+            form.reset();
           }, function (error) {
             console.error('EmailJS error:', error);
             alert('Failed to send message. Please try again.');
