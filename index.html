@@ -657,7 +657,7 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
   id="contact"
   class="relative py-20 bg-gray-900 text-white overflow-hidden"
 >
-  <!-- Grid background (можно дополнительно стилизовать как у тебя в лендинге) -->
+  <!-- Grid background  -->
   <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
 
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -844,7 +844,7 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
         );
         brainCamera.position.z = 3;
 
-        // Группа точек (псевдо-мозг)
+        
         const brainGroup = new THREE.Group();
         brainScene.add(brainGroup);
 
@@ -869,7 +869,7 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
         );
         brainGroup.add(brainPoints);
 
-        // Анимация
+        
         function animateBrain() {
           requestAnimationFrame(animateBrain);
           brainGroup.rotation.y += 0.002;
