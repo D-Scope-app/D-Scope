@@ -666,8 +666,6 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
       <div>
         <h2 class="text-4xl font-bold text-indigo-400 mb-12">Contact us</h2>
       </div>
-
-      <!-- Form -->
       <form id="contact-form" class="space-y-4" onsubmit="sendEmail(event)">
         <input
           type="text"
@@ -692,11 +690,12 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
         ></textarea>
         <button
           type="submit"
+          id="send-button"
           class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md font-semibold transition"
         >
           Send Message
         </button>
-      </form>
+      </form>      
     </div>
   </div>
 </section>
@@ -888,21 +887,30 @@ This is an experiment in what a next-generation Web3 project can be — minimal,
       })();
     
       function sendEmail(e) {
-        e.preventDefault();
-    
-        const form = document.getElementById('contact-form');
-    
-        emailjs.sendForm('service_vjvrr7b', 'template_bruqi7a', form)
-          .then(function () {
-            alert('Message sent successfully!');
-            form.reset();
-          }, function (error) {
-            console.error('EmailJS error:', error);
-            alert('Failed to send message. Please try again.');
-          });
-    
-        return false;
-      }
+  e.preventDefault();
+
+  const form = document.getElementById('contact-form');
+  const button = document.getElementById('send-button');
+
+  // Блокируем кнопку
+  button.disabled = true;
+  button.innerText = "Sending...";
+
+  emailjs.sendForm('service_vjvrr7b', 'template_bruqi7a', form)
+    .then(function () {
+      alert('Message sent successfully!');
+      form.reset();
+    }, function (error) {
+      console.error('EmailJS error:', error);
+      alert('Failed to send message. Please try again.');
+    })
+    .finally(function () {
+      button.disabled = false;
+      button.innerText = "Send Message";
+    });
+
+  return false;
+}
     </script>
     
   </body>
